@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Learning
 
-## Getting Started
+This repository contains my code while working through Scrimba's **Learn Next.js** course by Bob Ziroll.
 
-First, run the development server:
+The primary goal of this repository is to learn modern Next.js concepts and gain hands-on experience with the framework by coding alongside the course. Because of that, much of the application's structure, UI, and content intentionally follow the course material so I can focus on understanding the framework rather than designing an original application.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Topics Covered
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Next.js App Router
+- Routing and nested layouts
+- Server and Client Components
+- Rendering strategies
+- Data fetching
+- Dynamic routes
+- TypeScript with Next.js
+- Database-driven pages
+- Search, sorting, and pagination
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## About the Project
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The course walks through building **PrintForge**, a sample application for browsing 3D printing models, while introducing core Next.js concepts and best practices.
 
-## Learn More
+## Course
 
-To learn more about Next.js, take a look at the following resources:
+- **Course:** Scrimba – Learn Next.js
+- **Instructor:** Bob Ziroll
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+As I progress through the course, this repository will continue to evolve with additional lessons, exercises, and notes.
