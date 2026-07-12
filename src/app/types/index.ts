@@ -30,4 +30,5 @@ export type ModelCardProps = {
 export type PillProps = {
     children: ReactNode
     className?: string
+    role?: string
 }
