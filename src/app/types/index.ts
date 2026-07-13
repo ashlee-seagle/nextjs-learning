@@ -27,6 +27,11 @@ export type ModelCardProps = {
     model: Model
 }
 
+export type ModelsGridProps = {
+    title: string
+    models: Model[]
+}
+
 export type PillProps = {
     children: ReactNode
     className?: string
