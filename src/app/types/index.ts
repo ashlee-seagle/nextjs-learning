@@ -11,6 +11,15 @@ export type Model = {
   dateAdded: string;
 }
 
+export type Category = {
+    displayName: string
+    slug: string
+}
+
+export type CategoriesData = {
+    categories: Category[]
+}
+
 // Page Types
 export type RootLayoutProps = Readonly<{
   children: React.ReactNode;
