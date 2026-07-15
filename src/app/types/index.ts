@@ -41,6 +41,12 @@ export type CategoryPageProps = {
     }>
 }
 
+export type NavLinkProps = {
+    href: string
+    children: ReactNode
+    isActive?: boolean
+}
+
 // Components Types
 export type ModelCardProps = {
     model: Model
