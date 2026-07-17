@@ -12,8 +12,8 @@ export default function CategoriesNav() {
   return (
     <aside className="sticky top-0 z-10 w-full bg-white border-b border-gray-200 md:fixed md:w-64 md:top-1/2 md:-translate-y-1/2 md:border-none">
       <div className="relative">
-        <nav>
-          <ul>
+        <nav className="overflow-x-auto md:overflow-visible">
+          <ul className="flex items-center gap-2 px-4 py-3 md:block md:px-0 md:py-0 md:space-y-2">
             <NavLink href="/3d-models" isActive={pathname === "/3d-models"}>
               All
             </NavLink>
