@@ -1,5 +1,5 @@
+import Form from "next/form";
 import { getModels } from "../lib/models";
-
 import { ModelsPageProps } from "../types";
 
 import ModelsGrid from "../components/ModelsGrid";
@@ -21,7 +21,7 @@ export default async function ModelsPage({ searchParams }: ModelsPageProps) {
 
   return (
     <div>
-      <form>
+      <Form action={"/3d-models"}>
         <input
           type="text"
           name="query"
@@ -30,7 +30,7 @@ export default async function ModelsPage({ searchParams }: ModelsPageProps) {
           defaultValue={query}
           className="w-full py-3 pl-5 pr-5 text-sm placeholder-gray-500 bg-white border border-[#606060] rounded-full focus:border-[#606060] focus:outline-none focus:ring-0 md:text-base"
         />
-      </form>
+      </Form>
       <ModelsGrid title="3D Models" models={filteredModels} />
     </div>
   );
