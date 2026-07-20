@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --color-orange-accent: #ff7a1a;
+}
+
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
