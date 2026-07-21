@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Learning
 
-## Getting Started
+This repository contains my code while working through Scrimba's **Learn Next.js** course by Bob Ziroll and additional instructors.
 
-First, run the development server:
+The primary goal of this repository is to learn modern Next.js concepts and gain hands-on experience with the framework by coding alongside the course. Because of that, much of the application's structure, UI, and content intentionally follow the course material so I can focus on understanding the framework rather than designing an original application.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About the Project
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The course centers around building **PrintForge**, a sample application for browsing 3D printing models while introducing core Next.js concepts and best practices.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Beginning in **Section 3 – Making Data Flow**, the project takes a different approach. Rather than continuing from a completed application, the existing project is intentionally stripped back to a minimal starting point and rebuilt incrementally from provided HTML mockups. Each lesson introduces additional functionality, allowing the application to evolve step by step while exploring Next.js features and patterns.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Topics Covered
 
-## Learn More
+Throughout the course, this project explores concepts including:
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js App Router
+- Routing and nested layouts
+- Server and Client Components
+- Rendering strategies
+- Dynamic routes
+- Image optimization
+- TypeScript with Next.js
+- SQLite database integration
+- Data fetching
+- Search and filtering
+- Sorting
+- Pagination
+- URL search parameters
+- Loading and error states
+- Not Found pages
+- Performance and UX improvements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Current Progress
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🚧 **In Progress**
 
-## Deploy on Vercel
+Current milestone:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- ✅ Completed Sections 1 & 2
+- 🚧 Working through **Section 3 – Making Data Flow**
+- ✅ Rebuilt the project shell from HTML mockups
+- ✅ Converted the navigation bar into a reusable Next.js component
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Progress will continue to be committed incrementally as new concepts and features are introduced.
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- SQLite
+- CSS
+
+## Course
+
+- **Course:** Scrimba – Learn Next.js
+- **Primary Instructor:** Bob Ziroll
+
+---
+
+> **Note:** This repository is intended as a learning project. While many implementation details intentionally mirror the course material, all code is written by me as I work through the lessons to better understand the framework and reinforce the concepts being taught.
