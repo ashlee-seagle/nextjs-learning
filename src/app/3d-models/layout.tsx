@@ -1,8 +1,4 @@
-// import "./globals.css";
-
 import CategoriesNav from "../components/CategoriesNav";
-
-// import Navbar from "./components/Navbar";
 
 export default function ModelsLayout({
   children,
