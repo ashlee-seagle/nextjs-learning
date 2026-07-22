@@ -1,3 +1,11 @@
+import ModelsSearch from "../components/ModelsSearch";
+import ModelsGrid from "../components/ModelsGrid";
+
 export default function Models() {
-  return <h1>Hello</h1>;
+  return (
+    <div>
+      <ModelsSearch></ModelsSearch>
+      <ModelsGrid></ModelsGrid>
+    </div>
+  );
 }
