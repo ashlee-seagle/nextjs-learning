@@ -4,17 +4,15 @@ import CategoriesNav from "../components/CategoriesNav";
 
 // import Navbar from "./components/Navbar";
 
-export default function RootLayout({
+export default function ModelsLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <CategoriesNav></CategoriesNav>
-        {children}
-      </body>
-    </html>
+    <div className="relative flex flex-col min-h-screen md:flex-row">
+      <CategoriesNav></CategoriesNav>
+      <main className="flex-1 p-4 md:ml-64">{children}</main>
+    </div>
   );
 }
