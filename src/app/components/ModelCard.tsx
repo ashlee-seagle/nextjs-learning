@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+
 export default function ModelCard() {
   return (
     <Link
@@ -10,10 +12,12 @@ export default function ModelCard() {
         role="article"
       >
         <div className="relative aspect-square">
-          <img
+          <Image
             src="/img/300x300.svg"
             alt="Articulated Dragon"
             className="absolute inset-0 object-cover w-full h-full"
+            width={300}
+            height={300}
           />
         </div>
         <div className="p-4">

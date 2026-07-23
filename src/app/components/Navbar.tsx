@@ -1,5 +1,6 @@
 import Link from "next/link";
 import NavLink from "./NavLink";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
@@ -7,16 +8,20 @@ export default function Navbar() {
       <nav className="flex justify-between px-6 py-4 pr-2">
         <Link href="/">
           <div className="relative cursor-pointer">
-            <img
+            <Image
               src="/img/printforge-logo.svg"
               alt="PrintForge Logo"
               className="w-[200px] h-auto hidden md:block"
+              width={200}
+              height={42}
             />
 
-            <img
+            <Image
               src="/img/printforge-logo-icon.svg"
               alt="PrintForge Logo"
               className="w-[40px] h-auto block md:hidden"
+              width={40}
+              height={35}
             />
           </div>
         </Link>

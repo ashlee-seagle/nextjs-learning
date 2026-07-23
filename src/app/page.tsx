@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HomePage() {
   return (
@@ -25,10 +26,12 @@ export default function HomePage() {
             </Link>
           </div>
         </div>
-        <img
+        <Image
           src="/img/hero-image.png"
           className="w-[350px] h-auto rounded-lg"
           alt="Hero Image"
+          width={1206}
+          height={1201}
         />
       </section>
     </main>

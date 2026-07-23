@@ -1,12 +1,16 @@
+import Image from "next/image";
+
 export default function ModelPage() {
   return (
     <div className="container max-w-6xl px-4 py-8 mx-auto">
       <article className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         <figure className="relative overflow-hidden rounded-lg shadow-lg aspect-square">
-          <img
+          <Image
             src="/img/300x300.svg"
             alt="3D model of MODEL NAME"
             className="absolute inset-0 object-cover w-full h-full"
+            width={500}
+            height={500}
           />
         </figure>
 
