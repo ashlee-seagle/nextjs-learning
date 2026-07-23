@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <main>
       <section className="flex flex-col-reverse items-center justify-between gap-8 px-6 py-12 mx-auto md:flex-row max-w-7xl">

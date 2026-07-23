@@ -1,4 +1,4 @@
-export default function About() {
+export default function AboutPage() {
   return (
     <main>
       <section className="container max-w-4xl px-4 py-8 mx-auto">

@@ -1,7 +1,7 @@
 import ModelsSearch from "../components/ModelsSearch";
 import ModelsGrid from "../components/ModelsGrid";
 
-export default function Models() {
+export default function ModelsPage() {
   return (
     <div>
       <ModelsSearch></ModelsSearch>
