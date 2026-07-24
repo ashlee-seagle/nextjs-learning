@@ -1,13 +1,20 @@
 import Image from "next/image";
+import { getModelById } from "@/app/lib/models";
 
-export default function ModelPage() {
+export default async function ModelPage({
+  params,
+}: {
+  params: Promise<{ id: number }>;
+}) {
+  const { id } = await params;
+  const model = await getModelById(id);
   return (
     <div className="container max-w-6xl px-4 py-8 mx-auto">
       <article className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         <figure className="relative overflow-hidden rounded-lg shadow-lg aspect-square">
           <Image
             src="/img/300x300.svg"
-            alt="3D model of MODEL NAME"
+            alt={`3D model of ${model.name}`}
             className="absolute inset-0 object-cover w-full h-full"
             width={500}
             height={500}
@@ -21,26 +28,26 @@ export default function ModelPage() {
             aria-label="Likes count"
           >
             <span className="font-light" aria-label="model likes">
-              &hearts; 1847
+              &hearts; {model.likes}
             </span>
           </div>
-          <h1 className="mb-6 text-4xl font-bold">Articulated Dragon</h1>
+          <h1 className="mb-6 text-4xl font-bold">{model.name}</h1>
           <span
             className="inline-block bg-transparent border border-gray-400 rounded-full px-3 py-1 text-sm text-gray-800 mb-6 w-fit"
             role="status"
             aria-label="Category"
           >
-            Toys & Games
+            {model.category}
           </span>
 
           <div className="mb-6 prose prose-lg max-w-none">
-            <p className="leading-relaxed text-gray-700">
-              A detailed dragon model with movable joints and wings
-            </p>
+            <p className="leading-relaxed text-gray-700">{model.description}</p>
           </div>
 
           <footer className="text-sm text-gray-500">
-            <time dateTime="2023-03-16">Added on 3/16/2023</time>
+            <time dateTime={model.dateAdded}>
+              Added on {new Date(model.dateAdded).toLocaleDateString()}
+            </time>
           </footer>
         </section>
       </article>
