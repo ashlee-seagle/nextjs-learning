@@ -1,11 +1,15 @@
 import ModelsSearch from "../components/ModelsSearch";
 import ModelsGrid from "../components/ModelsGrid";
 
-export default function ModelsPage() {
+import type { Model } from "../lib/types";
+import { getModels } from "../lib/models";
+
+export default async function ModelsPage() {
+  const models: Model[] = await getModels();
   return (
     <div>
       <ModelsSearch></ModelsSearch>
-      <ModelsGrid></ModelsGrid>
+      <ModelsGrid models={models}></ModelsGrid>
     </div>
   );
 }
