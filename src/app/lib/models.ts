@@ -1,15 +1,24 @@
 import { getDBConnection } from "./db";
 
-export async function getModels() {
+export async function getModels(search?: string) {
     const db = await getDBConnection();
 
+    let sql = "SELECT * FROM models"
+    const placeholders = []
+
+    if (search) {
+        sql += " WHERE (name LIKE ? OR description LIKE ?)";
+        placeholders.push(`%${search}%`, `%${search}%`);
+  }
+  
+
     try {
-        return await db.all(`SELECT * FROM models`)
+        return await db.all(sql, placeholders)
     }
     finally {
         await db.close();
     }
-}
+} 
 
 export async function getModelsByCategorySlug(categorySlug:string) {
     const db = await getDBConnection();
