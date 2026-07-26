@@ -1,5 +1,5 @@
 import Form from "next/form";
-export default function ModelsSearch() {
+export default function ModelsSearch({ search }: { search?: string }) {
   return (
     <Form className="w-full px-5 md:px-0 md:max-w-xl" action="/3d-models">
       <input
@@ -8,6 +8,7 @@ export default function ModelsSearch() {
         name="search"
         placeholder="E.g. dragon"
         autoComplete="off"
+        defaultValue={search}
         className="w-full py-3 pl-5 pr-5 text-sm placeholder-gray-500 bg-white border border-[#606060] rounded-full focus:border-[#606060] focus:outline-none focus:ring-0 md:text-base"
       />
     </Form>

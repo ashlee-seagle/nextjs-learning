@@ -14,8 +14,8 @@ export default async function ModelsPage({
 
   return (
     <div>
-      <ModelsSearch></ModelsSearch>
-      <ModelsGrid models={models}></ModelsGrid>
+      <ModelsSearch search={search}></ModelsSearch>
+      <ModelsGrid models={models} search={search}></ModelsGrid>
     </div>
   );
 }
