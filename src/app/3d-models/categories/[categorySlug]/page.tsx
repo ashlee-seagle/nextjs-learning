@@ -4,12 +4,15 @@ import { getModelsByCategorySlug } from "@/app/lib/models";
 
 export default async function CategoryPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ categorySlug: string }>;
+  searchParams: Promise<{ sortBy?: string }>;
 }) {
   const { categorySlug } = await params;
+  const sortBy = (await searchParams).sortBy?.toLowerCase() || "";
 
-  const models = await getModelsByCategorySlug(categorySlug);
+  const models = await getModelsByCategorySlug(categorySlug, sortBy);
   const category = await getCategoryBySlug(categorySlug);
   return <ModelsGrid models={models} categoryName={category.name} />;
 }
