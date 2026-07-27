@@ -6,7 +6,6 @@ export async function getModels({search, sortBy, categorySlug}:{
     categorySlug?: string
 }) {
     const db = await getDBConnection();
-
     let sql = "SELECT * FROM models"
     const placeholders = []
 
@@ -43,7 +42,6 @@ export async function getModels({search, sortBy, categorySlug}:{
 
 export async function getModelById(id:number) {
     const db = await getDBConnection();
-
     try {
         return await db.get(`SELECT * FROM models WHERE id =?`, [id]);
     }
