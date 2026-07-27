@@ -14,7 +14,7 @@ export default async function ModelsPage({
 }) {
   const search = (await searchParams).search?.toLowerCase() || "";
   const sortBy = (await searchParams).sortBy?.toLowerCase() || "";
-  const models: Model[] = await getModels(search, sortBy);
+  const models: Model[] = await getModels({ search, sortBy });
 
   return (
     <div>

@@ -1,6 +1,6 @@
 import ModelsGrid from "@/app/components/ModelsGrid";
 import { getCategoryBySlug } from "@/app/lib/categories";
-import { getModelsByCategorySlug } from "@/app/lib/models";
+import { getModels } from "@/app/lib/models";
 
 export default async function CategoryPage({
   params,
@@ -12,7 +12,7 @@ export default async function CategoryPage({
   const { categorySlug } = await params;
   const sortBy = (await searchParams).sortBy?.toLowerCase() || "";
 
-  const models = await getModelsByCategorySlug(categorySlug, sortBy);
+  const models = await getModels({ sortBy, categorySlug });
   const category = await getCategoryBySlug(categorySlug);
   return <ModelsGrid models={models} categoryName={category.name} />;
 }

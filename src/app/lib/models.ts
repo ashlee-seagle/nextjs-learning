@@ -1,6 +1,10 @@
 import { getDBConnection } from "./db";
 
-export async function getModels(search?: string, sortBy?: string) {
+export async function getModels({search, sortBy, categorySlug}:{
+    search?: string,
+    sortBy?: string,
+    categorySlug?: string
+}) {
     const db = await getDBConnection();
 
     let sql = "SELECT * FROM models"
@@ -10,9 +14,12 @@ export async function getModels(search?: string, sortBy?: string) {
         sql += " WHERE (name LIKE ? OR description LIKE ?)";
         placeholders.push(`%${search}%`, `%${search}%`);
     }
+    if (categorySlug) {
+        sql += " WHERE category=?"
+        placeholders.push(categorySlug);
+    }
     
     if (sortBy) {
-        // const sortPlaceholder = [];
         if (sortBy === 'alpha') {
             sql += " ORDER BY name ASC";
         }
@@ -32,28 +39,7 @@ export async function getModels(search?: string, sortBy?: string) {
     }
 } 
 
-export async function getModelsByCategorySlug(categorySlug:string, sortBy?:string) {
-    const db = await getDBConnection();
 
-    let sql = "SELECT * FROM models WHERE category = ?";
-    const placeholders = [categorySlug];
-
-    if (sortBy === "alpha") {
-    sql += " ORDER BY name ASC";
-    } else if (sortBy === "popular") {
-    sql += " ORDER BY likes DESC";
-    } else if (sortBy === "recent") {
-    sql += " ORDER BY dateAdded DESC";
-    }
-
-    try {
-        return await db.all(sql, placeholders);
-    }
-    
-    finally { 
-        await db.close();
-    }
-}
 
 export async function getModelById(id:number) {
     const db = await getDBConnection();

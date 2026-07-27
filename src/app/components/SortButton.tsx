@@ -13,9 +13,12 @@ export default function SortButton({
   const searchParams = useSearchParams();
   const isActive = searchParams.get("sortBy") === sortBy;
   function handleSort() {
-    const url = `${pathname}?sortBy=${sortBy}`;
+    const urlSearchParams = new URLSearchParams(searchParams.toString());
+    urlSearchParams.set("sortBy", sortBy);
+    const url = `${pathname}?${urlSearchParams.toString()}`;
     router.push(url);
   }
+
   return (
     <button
       onClick={handleSort}
