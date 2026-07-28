@@ -8,9 +8,13 @@ export default async function CategoryPage({
   searchParams,
 }: {
   params: Promise<{ categorySlug: string }>;
-  searchParams: Promise<{ sortBy?: string }>;
+  searchParams: Promise<{
+    search?: string;
+    sortBy?: string;
+  }>;
 }) {
   const { categorySlug } = await params;
+  const search = (await searchParams).search?.toLowerCase() || "";
   const sortBy = (await searchParams).sortBy?.toLowerCase() || "";
 
   const category = await getCategoryBySlug(categorySlug);
@@ -18,7 +22,13 @@ export default async function CategoryPage({
     notFound();
   }
 
-  const models = await getModels({ sortBy, categorySlug });
+  const models = await getModels({ search, sortBy, categorySlug });
 
-  return <ModelsBrowser models={models} categoryName={category.name} />;
+  return (
+    <ModelsBrowser
+      models={models}
+      categoryName={category.name}
+      search={search}
+    />
+  );
 }

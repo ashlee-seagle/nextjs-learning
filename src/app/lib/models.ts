@@ -9,14 +9,20 @@ export async function getModels({search, sortBy, categorySlug}:{
     let sql = "SELECT * FROM models"
     const placeholders = []
 
-    if (search) {
-        sql += " WHERE (name LIKE ? OR description LIKE ?)";
-        placeholders.push(`%${search}%`, `%${search}%`);
-    }
-    if (categorySlug) {
-        sql += " WHERE category=?"
-        placeholders.push(categorySlug);
-    }
+    if (search||categorySlug){
+    const where = []
+      if (search){
+        where.push("(name LIKE ? OR description LIKE ?)")
+        placeholders.push(`%${search}%`, `%${search}%`)
+      }
+      if (categorySlug){
+        where.push("category=?")
+        placeholders.push(categorySlug)
+      }
+
+      sql += " WHERE " + where.join(" AND ")
+  }
+    
     
     if (sortBy) {
         if (sortBy === 'alpha') {
