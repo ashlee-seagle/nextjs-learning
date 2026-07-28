@@ -1,5 +1,8 @@
+"use client";
 import Form from "next/form";
 import type { TransitionStartFunction } from "react";
+
+import { usePathname, useRouter } from "next/navigation";
 
 export default function ModelsSearch({
   search,
@@ -8,8 +11,20 @@ export default function ModelsSearch({
   search?: string;
   startTransition: TransitionStartFunction;
 }) {
+  const pathname = usePathname();
+  const router = useRouter();
+  function handleSearch(formData: FormData) {
+    const search = formData.get("search")?.toString().trim() || "";
+    const url = search
+      ? `${pathname}?search=${encodeURIComponent(search)}`
+      : pathname;
+    startTransition(() => {
+      router.push(url);
+    });
+  }
+
   return (
-    <Form className="w-full px-5 md:px-0 md:max-w-xl" action="/3d-models">
+    <Form className="w-full px-5 md:px-0 md:max-w-xl" action={handleSearch}>
       <input
         type="text"
         id="search"
