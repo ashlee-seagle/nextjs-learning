@@ -1,5 +1,6 @@
 "use client";
 
+import PaginationControls from "./PaginationControls";
 import ModelsSearch from "../components/ModelsSearch";
 import ModelsGrid from "../components/ModelsGrid";
 import type { Model } from "../lib/types";
@@ -9,10 +10,14 @@ export default function ModelsBrowser({
   search,
   models,
   categoryName,
+  totalPages,
+  currentPage,
 }: {
   search?: string;
   models: Model[];
   categoryName?: string;
+  totalPages: number;
+  currentPage: number;
 }) {
   const [isPending, startTransition] = useTransition();
   return (
@@ -28,6 +33,7 @@ export default function ModelsBrowser({
         isPending={isPending}
         startTransition={startTransition}
       ></ModelsGrid>
+      <PaginationControls totalPages={totalPages} currentPage={currentPage} />
     </div>
   );
 }
