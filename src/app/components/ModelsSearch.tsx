@@ -1,5 +1,13 @@
 import Form from "next/form";
-export default function ModelsSearch({ search }: { search?: string }) {
+import type { TransitionStartFunction } from "react";
+
+export default function ModelsSearch({
+  search,
+  startTransition,
+}: {
+  search?: string;
+  startTransition: TransitionStartFunction;
+}) {
   return (
     <Form className="w-full px-5 md:px-0 md:max-w-xl" action="/3d-models">
       <input

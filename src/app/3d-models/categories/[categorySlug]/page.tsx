@@ -1,4 +1,4 @@
-import ModelsGrid from "@/app/components/ModelsGrid";
+import ModelsBrowser from "@/app/components/ModelsBrowser";
 import { getCategoryBySlug } from "@/app/lib/categories";
 import { getModels } from "@/app/lib/models";
 
@@ -14,5 +14,5 @@ export default async function CategoryPage({
 
   const models = await getModels({ sortBy, categorySlug });
   const category = await getCategoryBySlug(categorySlug);
-  return <ModelsGrid models={models} categoryName={category.name} />;
+  return <ModelsBrowser models={models} categoryName={category.name} />;
 }

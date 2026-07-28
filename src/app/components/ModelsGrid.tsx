@@ -1,15 +1,21 @@
 import ModelCard from "./ModelCard";
 import type { Model } from "../lib/types";
 import SortControls from "./SortControls";
+import LoadingUI from "./LoadingUI";
+import { TransitionStartFunction } from "react";
 
 export default function ModelsGrid({
   models,
   categoryName,
   search,
+  isPending,
+  startTransition,
 }: {
   models: Model[];
   categoryName?: string;
   search?: string;
+  isPending: boolean;
+  startTransition: TransitionStartFunction;
 }) {
   let title = "3D Models";
   if (categoryName) {
@@ -22,13 +28,17 @@ export default function ModelsGrid({
     <div className="container px-4 py-8 mx-auto">
       <div className="flex flex-col gap-2 md:flex-row md:justify-between mb-8">
         <h1 className="mb-8 text-3xl font-bold">{title}</h1>
-        <SortControls></SortControls>
+        <SortControls startTransition={startTransition}></SortControls>
       </div>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {models.map((model) => (
-          <ModelCard key={model.id} model={model}></ModelCard>
-        ))}
-      </div>
+      {isPending ? (
+        <LoadingUI>Loading models...</LoadingUI>
+      ) : (
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {models.map((model) => (
+            <ModelCard key={model.id} model={model}></ModelCard>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
