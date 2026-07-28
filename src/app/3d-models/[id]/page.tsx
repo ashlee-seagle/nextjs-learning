@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import { getModelById } from "@/app/lib/models";
 
 export default async function ModelPage({
@@ -8,6 +9,11 @@ export default async function ModelPage({
 }) {
   const { id } = await params;
   const model = await getModelById(id);
+
+  if (!model) {
+    notFound();
+  }
+
   return (
     <div className="container max-w-6xl px-4 py-8 mx-auto">
       <article className="grid grid-cols-1 gap-8 lg:grid-cols-2">

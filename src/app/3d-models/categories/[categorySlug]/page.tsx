@@ -1,6 +1,7 @@
 import ModelsBrowser from "@/app/components/ModelsBrowser";
 import { getCategoryBySlug } from "@/app/lib/categories";
 import { getModels } from "@/app/lib/models";
+import { notFound } from "next/navigation";
 
 export default async function CategoryPage({
   params,
@@ -12,7 +13,12 @@ export default async function CategoryPage({
   const { categorySlug } = await params;
   const sortBy = (await searchParams).sortBy?.toLowerCase() || "";
 
-  const models = await getModels({ sortBy, categorySlug });
   const category = await getCategoryBySlug(categorySlug);
+  if (!category) {
+    notFound();
+  }
+
+  const models = await getModels({ sortBy, categorySlug });
+
   return <ModelsBrowser models={models} categoryName={category.name} />;
 }

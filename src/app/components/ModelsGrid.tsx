@@ -1,6 +1,7 @@
 import ModelCard from "./ModelCard";
 import type { Model } from "../lib/types";
 import SortControls from "./SortControls";
+import NotFoundUI from "./NotFoundUI";
 import LoadingUI from "./LoadingUI";
 import { TransitionStartFunction } from "react";
 
@@ -32,12 +33,19 @@ export default function ModelsGrid({
       </div>
       {isPending ? (
         <LoadingUI>Loading models...</LoadingUI>
-      ) : (
+      ) : models.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {models.map((model) => (
             <ModelCard key={model.id} model={model}></ModelCard>
           ))}
         </div>
+      ) : (
+        <NotFoundUI
+          title="No Models Found"
+          subtitle="Try searching for something else"
+          link_text="See all models"
+          link_href="/3d-models"
+        ></NotFoundUI>
       )}
     </div>
   );
