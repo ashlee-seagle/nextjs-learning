@@ -18,6 +18,7 @@ export default function SortButton({
   function handleSort() {
     const urlSearchParams = new URLSearchParams(searchParams.toString());
     urlSearchParams.set("sortBy", sortBy);
+    urlSearchParams.delete("page");
     const url = `${pathname}?${urlSearchParams.toString()}`;
     startTransition(() => {
       router.push(url);

@@ -33,7 +33,9 @@ export default function ModelsBrowser({
         isPending={isPending}
         startTransition={startTransition}
       ></ModelsGrid>
-      <PaginationControls totalPages={totalPages} currentPage={currentPage} />
+      {totalPages > 1 && (
+        <PaginationControls totalPages={totalPages} currentPage={currentPage} />
+      )}
     </div>
   );
 }
