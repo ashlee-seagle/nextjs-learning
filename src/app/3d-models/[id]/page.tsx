@@ -1,47 +1,50 @@
-import type { ModelDetailPageProps } from "@/app/types";
+import Image from "next/image";
+import { notFound } from "next/navigation";
 import { getModelById } from "@/app/lib/models";
 
-import Pill from "@/app/components/Pill";
-import { FaRegHeart } from "react-icons/fa6";
-import Image from "next/image";
-
-import modelPlaceholder from "../../../../public/300x300.svg";
-
-export default async function ModelDetailPage({
+export default async function ModelPage({
   params,
-}: ModelDetailPageProps) {
+}: {
+  params: Promise<{ id: number }>;
+}) {
   const { id } = await params;
   const model = await getModelById(id);
+
+  if (!model) {
+    notFound();
+  }
 
   return (
     <div className="container max-w-6xl px-4 py-8 mx-auto">
       <article className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-        {/* Image Section */}
         <figure className="relative overflow-hidden rounded-lg shadow-lg aspect-square">
           <Image
-            src={modelPlaceholder}
+            src="/img/300x300.svg"
             alt={`3D model of ${model.name}`}
             className="absolute inset-0 object-cover w-full h-full"
+            width={500}
+            height={500}
           />
         </figure>
 
-        {/* Content Section */}
         <section className="flex flex-col justify-center h-full">
           <div
             className="flex items-center mb-2 text-2xl text-gray-600"
             role="status"
             aria-label="Likes count"
           >
-            <FaRegHeart className="w-5 h-5 mr-2" aria-hidden="true" />
-            <span className="font-light" aria-label={`${model.likes} likes`}>
-              {model.likes}
+            <span className="font-light" aria-label="model likes">
+              &hearts; {model.likes}
             </span>
           </div>
           <h1 className="mb-6 text-4xl font-bold">{model.name}</h1>
-
-          <Pill className="mb-6 w-fit" role="status" aria-label="Category">
+          <span
+            className="inline-block bg-transparent border border-gray-400 rounded-full px-3 py-1 text-sm text-gray-800 mb-6 w-fit"
+            role="status"
+            aria-label="Category"
+          >
             {model.category}
-          </Pill>
+          </span>
 
           <div className="mb-6 prose prose-lg max-w-none">
             <p className="leading-relaxed text-gray-700">{model.description}</p>

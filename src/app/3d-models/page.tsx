@@ -1,37 +1,45 @@
-import Form from "next/form";
-import { getModels } from "../lib/models";
-import { ModelsPageProps } from "../types";
+import type { Model } from "../lib/types";
+import { getModels, getModelCount } from "../lib/models";
+import ModelsBrowser from "../components/ModelsBrowser";
+import { MODELS_PER_PAGE } from "../lib/constants";
+import { getQueryParams } from "../lib/utils";
+import { redirect } from "next/navigation";
 
-import ModelsGrid from "../components/ModelsGrid";
+export default async function ModelsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    search?: string;
+    sortBy?: string;
+    page?: string;
+  }>;
+}) {
+  const { search, sortBy, page } = getQueryParams(await searchParams);
 
-export default async function ModelsPage({ searchParams }: ModelsPageProps) {
-  const models = await getModels();
+  if (sortBy === null) {
+    redirect("/3d-models");
+  }
 
-  const { query } = await searchParams;
+  const modelCount = await getModelCount({ search });
+  const totalPages = Math.max(1, Math.ceil(modelCount / MODELS_PER_PAGE));
 
-  const normalizedQuery = query?.trim().toLowerCase() ?? "";
+  if (page < 1 || page > totalPages) {
+    redirect("/3d-models");
+  }
 
-  const filteredModels = normalizedQuery
-    ? models.filter(
-        (item) =>
-          item.name.toLowerCase().includes(normalizedQuery) ||
-          item.description.toLowerCase().includes(normalizedQuery),
-      )
-    : models;
+  const models: Model[] = await getModels({
+    search,
+    sortBy,
+    page,
+    modelsPerPage: MODELS_PER_PAGE,
+  });
 
   return (
-    <div>
-      <Form action={"/3d-models"}>
-        <input
-          type="text"
-          name="query"
-          placeholder="E.g. dragon"
-          autoComplete="off"
-          defaultValue={query}
-          className="w-full py-3 pl-5 pr-5 text-sm placeholder-gray-500 bg-white border border-[#606060] rounded-full focus:border-[#606060] focus:outline-none focus:ring-0 md:text-base"
-        />
-      </Form>
-      <ModelsGrid title="3D Models" models={filteredModels} />
-    </div>
+    <ModelsBrowser
+      search={search}
+      models={models}
+      totalPages={totalPages}
+      currentPage={page}
+    ></ModelsBrowser>
   );
 }
