@@ -3,9 +3,25 @@ export function getQueryParams(searchParams:{
   sortBy?:string,
   page?:string
 }){
-  const search = searchParams.search?.toLowerCase() || ''
-  const sortBy = searchParams.sortBy?.toLowerCase() || ''
-  const page = Number(searchParams.page) || 1 
+    const search = searchParams.search?.toLowerCase() || '';
+
+    const rawSortBy = searchParams.sortBy?.toLowerCase();
+    let sortBy;
+    if (rawSortBy === undefined){
+        sortBy = '';
+    } else {
+        sortBy = ['alpha', 'popular', 'recent'].includes(rawSortBy) ? rawSortBy : null;
+    } 
+    
+    const rawPage = searchParams.page;
+
+    let page;
+    if (rawPage === undefined){
+    page = 1;
+    } else {
+    const parsedPage = Number(rawPage);
+    page = Number.isNaN(parsedPage) ? 0 : parsedPage;
+    }
 
   return {search, sortBy, page}
 }
