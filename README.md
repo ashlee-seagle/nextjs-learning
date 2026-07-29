@@ -1,62 +1,103 @@
-# Next.js Learning
+# PrintForge
 
-This repository contains my code while working through Scrimba's **Learn Next.js** course by Bob Ziroll and additional instructors.
+PrintForge is a full-stack Next.js learning project for browsing community-created 3D-printing models. It was built while completing Scrimba's **Learn Next.js** course, with a focus on understanding how data moves through a modern App Router application.
 
-The primary goal of this repository is to learn modern Next.js concepts and gain hands-on experience with the framework by coding alongside the course. Because of that, much of the application's structure, UI, and content intentionally follow the course material so I can focus on understanding the framework rather than designing an original application.
+The application was rebuilt incrementally from provided HTML mockups. Its interface and subject matter follow the course material, while the implementation work gave me hands-on practice with routing, server-side data access, URL-driven state, reusable components, and user feedback states.
 
-## About the Project
+## Features
 
-The course centers around building **PrintForge**, a sample application for browsing 3D printing models while introducing core Next.js concepts and best practices.
-
-Beginning in **Section 3 – Making Data Flow**, the project takes a different approach. Rather than continuing from a completed application, the existing project is intentionally stripped back to a minimal starting point and rebuilt incrementally from provided HTML mockups. Each lesson introduces additional functionality, allowing the application to evolve step by step while exploring Next.js features and patterns.
-
-## Topics Covered
-
-Throughout the course, this project explores concepts including:
-
-- Next.js App Router
-- Routing and nested layouts
-- Server and Client Components
-- Rendering strategies
-- Dynamic routes
-- Image optimization
-- TypeScript with Next.js
-- SQLite database integration
-- Data fetching
-- Search and filtering
-- Sorting
-- Pagination
-- URL search parameters
-- Loading and error states
-- Not Found pages
-- Performance and UX improvements
-
-## Current Progress
-
-🚧 **In Progress**
-
-Current milestone:
-
-- ✅ Completed Sections 1 & 2
-- 🚧 Working through **Section 3 – Making Data Flow**
-- ✅ Rebuilt the project shell from HTML mockups
-- ✅ Converted the navigation bar into a reusable Next.js component
-
-Progress will continue to be committed incrementally as new concepts and features are introduced.
+- Browse models stored in a local SQLite database
+- View individual model details through dynamic routes
+- Filter models by category
+- Search model names and descriptions
+- Search within a selected category
+- Sort results alphabetically, by popularity, or by recency
+- Paginate global and category-specific results
+- Preserve search and sorting state in URL parameters
+- Validate invalid page and sort parameters before querying
+- Display responsive loading and pending states
+- Handle empty results, unknown models, invalid categories, and missing pages
+- Highlight active navigation and sorting controls
 
 ## Tech Stack
 
-- Next.js
-- React
+- Next.js 16 with the App Router
+- React 19
 - TypeScript
+- Tailwind CSS
 - SQLite
-- CSS
 
-## Course
+## How the Application Works
 
-- **Course:** Scrimba – Learn Next.js
-- **Primary Instructor:** Bob Ziroll
+Next.js Server Components read validated URL parameters and query SQLite for the requested models. Search, category, sorting, and pagination options are translated into parameterized SQL conditions.
 
----
+Interactive controls update the URL with client-side navigation. Because the URL is the source of truth, searches and filters are bookmarkable, refresh-safe, and compatible with browser navigation.
 
-> **Note:** This repository is intended as a learning project. While many implementation details intentionally mirror the course material, all code is written by me as I work through the lessons to better understand the framework and reinforce the concepts being taught.
+The shared model browser coordinates pending navigation state across the search, sorting, and results grid. Following the course architecture, the transition callback is passed explicitly through the small component tree. This keeps the data flow visible without introducing additional state-management infrastructure. In a larger application with deeper or more widely shared state, I would consider component composition, context, or an intent-focused abstraction to avoid excessive prop drilling.
+
+## Routes
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Project landing page |
+| `/about` | Information about PrintForge |
+| `/3d-models` | Searchable, sortable, paginated model library |
+| `/3d-models/categories/[categorySlug]` | Models filtered by category |
+| `/3d-models/[id]` | Individual model details |
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js
+- npm
+
+### Installation
+
+```bash
+git clone https://github.com/ashlee-seagle/nextjs-learning.git
+cd nextjs-learning
+npm install
+```
+
+### Seed the database
+
+The SQLite database is generated locally and intentionally excluded from Git.
+
+```bash
+npx tsx src/app/lib/seeds/seed_categories.ts
+npx tsx src/app/lib/seeds/seed_models.ts
+```
+
+These commands create `printforge.db` in the project root and populate it with the course data.
+
+### Run the application
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Quality Checks
+
+```bash
+npm run lint
+npm run build
+```
+
+## Challenges and Lessons
+
+- Built parameterized SQL queries that safely combine search and category conditions.
+- Kept search, sorting, and pagination synchronized through URL parameters.
+- Ensured filtered count queries matched result queries so pagination stayed accurate.
+- Validated query parameters before fetching data or redirecting invalid requests.
+- Used Server Components for database access and Client Components only where interaction was required.
+- Used React transitions to provide responsive feedback during client-side navigation.
+- Evaluated when explicit prop passing is appropriate and when a larger application might benefit from composition or context.
+
+## Course Context
+
+This project was created as part of Scrimba's **Learn Next.js** course, led primarily by Bob Ziroll with additional instructors.
+
+The product concept, mockups, and lesson requirements come from the course. I implemented the application while following the curriculum, troubleshooting issues, validating behavior, and documenting the engineering decisions I learned along the way.
